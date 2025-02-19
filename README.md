@@ -1,2 +1,3 @@
 # bulk-rna-seq-analysis
-for DEG, Pathway Enrichment Analysis and GSEA
+# including DEG, Pathway Enrichment Analysis and GSEA Analysis
+# currently being used in Cardiac Bulk RNA-seq Samples
