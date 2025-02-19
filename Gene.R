@@ -10,7 +10,7 @@ library(GenomicFeatures)
 
 ########################################
 # Determine the number of detected genes in each sample
-gene_counts <- read.table('/SFS/home/fuyib/PID22957/gene.counts.tsv', row.names = 1, header = TRUE)
+gene_counts <- read.table('pathway/gene.counts.tsv', row.names = 1, header = TRUE)
 head(gene_counts)
 
 # Filter out genes with all zero counts using dplyr
@@ -23,19 +23,22 @@ print(detected_genes)
 #Histogram
 
 # Sample data in a data frame
-data <- data.frame(Sample_ID = c("132A1", "X195A1", "X288C1", "X781C1", "X8867F"),
-                   Numbers = c(29033, 27685, 29111, 29840, 28146))
+data <- data.frame(Sample_ID = c("","","",...),
+                   Numbers = c(detected_genes_results))
 
 ggplot(data, aes(x = Sample_ID, y = Numbers)) +
   geom_bar(stat = "identity", fill = "lightblue", color = "black") +
-  geom_hline(yintercept = 39015, color = "red", linetype = "dashed", linewidth = 1.2) +  # Horizontal line at y = 39015
+  geom_hline(yintercept = detected_genes, color = "red", linetype = "dashed", linewidth = 1.2) +  # Horizontal line at y = the number of detected genes
   geom_text(aes(label = Numbers), vjust = -0.5, color = "black") +  # Numbers above bars
-  annotate("text", x = 1, y = 39015 + 100, label = "39015", color = "red", vjust = -0.5) +  # Number above constant line
+  annotate("text", x = 1, y = detected_genes + 100, label = "of the number detected_genes", color = "red", vjust = -0.5) +  # Number above constant line
   labs(title = "Detected Genes per Sample ID", x = "Sample ID", y = "Number of Detected Genes") +
   theme_minimal()
 
 ################################################
 #Expression Levels
+#Checking the geneID in both files to make them fit in the same names
+#Example: geneIDs start with  "X..." 
+
 gene_annotation <- read_table('gene_annotation.tsv')
 
 gene_counts$gene_id <- rownames(gene_counts)
