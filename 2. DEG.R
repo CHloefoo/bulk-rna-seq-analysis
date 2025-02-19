@@ -2,7 +2,7 @@ library(DESeq2)
 library(tidyverse)
 library(ggplot2)
 
-gene_counts <- read.table('/SFS/home/fuyib/PID22957/gene.counts.tsv', row.names = "gene_id", header = TRUE)
+gene_counts <- read.table('PATHWAY/gene.counts.tsv', row.names = "gene_id", header = TRUE)
 gene_counts <- gene_counts[, sort(colnames(gene_counts))]
 head(gene_counts)
 
